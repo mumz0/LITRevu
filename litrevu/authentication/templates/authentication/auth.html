@@ -1,15 +1,29 @@
 {% extends "authentication/base.html" %}
 {% block content %}
-<section>
-    <h2>Connexion</h2>
-    <form method="post">
-        {{ form.as_p }}
+
+<section class="w-1/2 p-8">
+    <h2 class="text-center mt-12 mb-12 text-xl">Inscrivez-vous maintenant</h2>
+    <div class="text-center">
+        <a href="{% url 'signup' %}" class="inline-block bg-blue-500 text-white px-4 py-2 rounded-md ">S'inscrire</a>
+    </div>
+</section>
+
+<section class="w-1/2 p-8 ">
+    <h2 class="text-center mt-12 mb-12 text-xl">Connectez-vous</h2>
+    <form method="post" class="flex flex-col items-center mb-12">
+        <div class="mb-8 w-full">
+            <label for="username" class="block text-sm font-medium text-gray-700">Nom d'utilisateur</label>
+            <input type="text" id="username" name="username" class="border border-black rounded-md px-6 py-2 w-full">
+        </div>
+        <div class="mb-8 w-full">
+            <label for="password" class="block text-sm font-medium text-gray-700">Mot de passe</label>
+            <input type="password" id="password" name="password"
+                class="border border-black rounded-md px-6 py-2 w-full">
+        </div>
         {% csrf_token %}
-        <button type="submit">Se connecter</button>
+        <button type="submit" class="inline-block bg-blue-500 text-white px-4 py-2 rounded-md ml-auto">Se
+            connecter</button>
     </form>
 </section>
-<section>
-    <h2>Inscrivez-vous maintenant</h2>
-    <a href="{% url 'signup' %}">S'inscrire</a>
+
 {% endblock content %}
-</section>

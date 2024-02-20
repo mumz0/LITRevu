@@ -1,13 +1,29 @@
-<html>
+
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LITReview</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.1.2/dist/tailwind.min.css" rel="stylesheet">
 </head>
 
-<body>
-    <h1>LITReview</h1>
-    {% block content %}
-    {% endblock content %}
+<body class="mx-auto max-w-screen-2xl max-h-screen flex justify-center items-center">
+    <div class="py-16 px-16 w-screen h-screen">
+        <div class="border border-black h-full">
+        <header class=" border-b border-black flex justify-center items-center h-24">
+            <h1 class="text-xl font-semibold">LITReview</h1>
+        </header>
+        
+        <main class="container flex flex-row">
+            {% block content %}
+            {% endblock content %}
+        </main>
+    </div>
+    </div>
 </body>
 
 </html>
+
+
