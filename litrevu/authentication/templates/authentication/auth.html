@@ -1,0 +1,15 @@
+{% extends "authentication/base.html" %}
+{% block content %}
+<section>
+    <h2>Connexion</h2>
+    <form method="post">
+        {{ form.as_p }}
+        {% csrf_token %}
+        <button type="submit">Se connecter</button>
+    </form>
+</section>
+<section>
+    <h2>Inscrivez-vous maintenant</h2>
+    <a href="{% url 'signup' %}">S'inscrire</a>
+{% endblock content %}
+</section>
