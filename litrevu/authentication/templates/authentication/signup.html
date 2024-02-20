@@ -1,13 +1,34 @@
 {% extends "authentication/base.html" %}
 {% block content %}
-{% if form.errors %}
-{{ form.errors }}
-{% endif %}
-<h2>Inscrivez-vous</h2>
-<form method="post">
-{{ form.as_p }}
-{% csrf_token %}
-<a href="{% url 'auth' %}">Retour</a>
-<button type="submit" >S’inscrire</button>
-</form>
+<div class="w-full max-w-md mx-auto p-8">
+    <h2 class="text-center mt-12 mb-12 text-xl">Inscrivez-vous</h2>
+    <form method="post" class="flex flex-col items-center">
+        {% csrf_token %}
+        <div class="mb-8 w-full">
+            <label for="username" class="block text-sm font-medium text-gray-700">Nom d'utilisateur</label>
+            <input type="text" id="username" name="username" class="border border-black rounded-md px-6 py-2 w-full">
+            {% for error in form.username.errors %}
+            <p class="text-red-500 text-xs italic">{{ error }}</p>
+            {% endfor %}
+        </div>
+        <div class="mb-8 w-full">
+            <label for="password1" class="block text-sm font-medium text-gray-700">Mot de passe</label>
+            <input type="password" id="password1" name="password1" class="border border-black rounded-md px-6 py-2 w-full">
+            {% for error in form.password1.errors %}
+            <p class="text-red-500 text-xs italic">{{ error }}</p>
+            {% endfor %}
+        </div>
+        <div class="mb-8 w-full">
+            <label for="password2" class="block text-sm font-medium text-gray-700">Confirmer le mot de passe</label>
+            <input type="password" id="password2" name="password2" class="border border-black rounded-md px-6 py-2 w-full">
+            {% for error in form.password2.errors %}
+            <p class="text-red-500 text-xs italic">{{ error }}</p>
+            {% endfor %}
+        </div>
+        <div class="flex justify-between w-full">
+            <a href="{% url 'auth' %}" class="inline-block bg-gray-300 text-gray-700 px-4 py-2 rounded-md ml-2">Retour</a>
+            <button type="submit" class="inline-block bg-blue-500 text-white px-4 py-2 rounded-md mr-2">S’inscrire</button>
+        </div>
+    </form>
+</div>
 {% endblock content %}
