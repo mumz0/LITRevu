@@ -1,0 +1,21 @@
+{% block content %}
+<div class="p-4">
+    {% if item.ticket %}
+        <p>{{ item.ticket.user }}</p>
+        <p>{{ item.time_created }}</p>
+        <h2 class="text-xl font-bold mb-2">Ticket: {{ item.ticket.title }}</h2>
+        <p class="text-gray-700">{{ item.ticket.description }}</p>
+        {% if item.ticket.image %}
+            <img src="{{ item.ticket.image.url }}" alt="Image du ticket" class="w-full h-auto">
+        {% endif %}
+    {% else %}
+        <p>{{ item.user }}</p>
+        <p>{{ item.time_created }}</p>
+        <h2 class="text-xl font-bold mb-2">Ticket: {{ item.title }}</h2>
+        <p class="text-gray-700">{{ item.description }}</p>
+        {% if item.image %}
+            <img src="{{ item.image.url }}" alt="Image du ticket" class="w-full h-auto">
+        {% endif %}
+    {% endif %}
+</div>
+{% endblock content %}

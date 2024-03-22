@@ -13,17 +13,20 @@
     <form method="post" class="flex flex-col items-center mb-12">
         <div class="mb-8 w-full">
             <label for="username" class="block text-sm font-medium text-gray-700">Nom d'utilisateur</label>
-            <input type="text" id="username" name="username" class="border border-black rounded-md px-6 py-2 w-full">
+            <input type="text" id="username" name="username" class="border border-black rounded-md px-6 py-2 w-full" aria-label="Saisir votre nom d'utilisateur">
         </div>
         <div class="mb-8 w-full">
             <label for="password" class="block text-sm font-medium text-gray-700">Mot de passe</label>
             <input type="password" id="password" name="password"
-                class="border border-black rounded-md px-6 py-2 w-full">
+                class="border border-black rounded-md px-6 py-2 w-full" aria-label="Saisir le mot de passe">
         </div>
         {% csrf_token %}
-        <button type="submit" class="inline-block bg-blue-500 text-white px-4 py-2 rounded-md ml-auto">Se
+        <button type="submit" class="inline-block bg-blue-500 text-white px-4 py-2 rounded-md ml-auto" aria-label="Se connecter">Se
             connecter</button>
     </form>
+    {% for error in form.password.errors %}
+    <p class="text-red-500 text-xs italic">{{ error }}</p>
+    {% endfor %}
 </section>
 
 {% endblock content %}

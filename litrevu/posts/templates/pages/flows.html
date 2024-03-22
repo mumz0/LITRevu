@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="flex justify-center">
+    <div class="flex flex-row gap-4">
+        <a href="{% url 'create_ticket' %}" class="reset-button-size bg-blue-500 text-white px-4 py-2 rounded-md ml-2"
+            aria-label="Demander une critique">Demander une critique</a>
+        <a href="{% url 'create_review' %}" class="reset-button-size bg-blue-500 text-white px-4 py-2 rounded-md ml-2"
+            aria-label="Créer une critique">Créer une critique</a>
+    </div>
+</div>
+
+<div class="flex flex-col items-center mt-4">
+    {% for item in combined_list %}
+        <div class="w-full max-w-md bg-white border border-black rounded-lg overflow-hidden mb-4">
+            {% if not item.ticket %}
+                {% include 'posts/ticket.html' %}
+            {% else %}
+                {% include 'posts/review.html' %}
+            {% endif %}
+        </div>
+    {% endfor %}
+</div>
+{% endblock content %}
