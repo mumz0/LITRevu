@@ -1,14 +1,16 @@
+from django.utils import timezone
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.conf import settings
+
 
 class User(AbstractUser):
     
-    CREATOR = 'CREATOR'
-    SUBSCRIBER = 'SUBSCRIBER'
+    username = models.CharField(max_length=30, unique=True)
+    date_joined = models.DateTimeField(default=timezone.now)
 
-    ROLE_CHOICES = (
-        (CREATOR, 'Créateur'),
-        (SUBSCRIBER, 'Abonné'),
-    )
-    profile_photo = models.ImageField(verbose_name='Photo de profil')
-    role = models.CharField(max_length=30, choices=ROLE_CHOICES, verbose_name='Rôle')
+    USERNAME_FIELD = 'username'
+    
+    class Meta:
+        verbose_name = 'Utilisateur'
+        verbose_name_plural = 'Utilisateurs'

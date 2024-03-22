@@ -3,5 +3,5 @@ from django.contrib.auth.decorators import login_required
 
 
 @login_required
-def home(request):
-    return render(request, 'literary_magazine/home.html')
+def follows(request):
+    return render(request, 'subscription/follows.html')

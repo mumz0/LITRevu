@@ -1,0 +1,10 @@
+{% block content %}
+<div class="p-4">
+    <p>{{ item.user }}</p>
+    <p>{{ item.time_created }}</p>
+    <h2 class="text-xl font-bold mb-2">Review for Ticket: {{ item.headline }}</h2>
+    <p class="text-gray-700">Rating: {{ item.rating }}</p>
+    <p class="text-gray-700">{{ item.body }}</p>
+    {% include 'posts/ticket.html' %}
+</div>
+{% endblock content %}

@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mx-auto px-4 sm:px-8 lg:px-32 py-8 flex-grow flex flex-col h-full">
+    <h1 class="text-xl text-center mb-6">Créer une review</h1>
+    <div class="flex flex-col border border-black py-6 flex-grow">
+        <h2 class="text-l text-start mb-6 px-4">Livre / Article</h2>
+        <form method="post" enctype="multipart/form-data" class="flex flex-col flex-grow px-32">
+            {% csrf_token %}
+            <div class="mb-4">
+                <label for="title" class="block mb-2 text-sm font-bold text-gray-700">Titre</label>
+                <input type="text" id="title" name="title"
+                    class="border border-black w-full px-4 py-2 rounded-md focus:outline-none focus:border-blue-500" />
+            </div>
+            <div class="flex-grow flex flex-col mb-4">
+                <label for="description" class="block mb-2 text-sm font-bold text-gray-700">Description</label>
+                <textarea id="description" name="description"
+                    class="border border-black resize-none w-full flex-grow px-4 py-2 rounded-md focus:outline-none focus:border-blue-500"></textarea>
+            </div>
+            <div class="mb-4">
+                <label for="image" class="block mb-2 text-sm font-bold text-gray-700">Image</label>
+                <input type="file" id="image" name="image" accept="image/*"
+                    class="border border-black w-82 px-4 py-2 rounded-md focus:outline-none focus:border-blue-500" />
+            </div>    
+
+    </div>
+    <div class="flex flex-col border border-black py-6 flex-grow">
+        <h2 class="text-l text-start mb-6 px-4">Critique</h2>
+        <div class="flex flex-col flex-grow px-32">
+            {% csrf_token %}
+            <div class="mb-4">
+                <label for="title" class="block mb-2 text-sm font-bold text-gray-700">Titre</label>
+                <input type="text" id="title" name="headline"
+                    class="border border-black w-full px-4 py-2 rounded-md focus:outline-none focus:border-blue-500"/>
+            </div>
+            <div class="mb-4">
+            <h2 class="block mb-2 text-sm font-bold text-gray-700">Note</h2>
+            <fieldset class="rating">
+                <input type="radio" id="0" name="rating" value="0" checked/>
+                <label for="0" title="0" class="mr-4">0</label>
+                <input type="radio" id="1" name="rating" value="1"/>
+                <label for="1" title="1" class="mr-4">1</label>
+                <input type="radio" id="2" name="rating" value="2"/>
+                <label for="2" title="2" class="mr-4">2</label>
+                <input type="radio" id="3" name="rating" value="3"/>
+                <label for="3" title="3" class="mr-4">3</label>
+                <input type="radio" id="4" name="rating" value="4"/>
+                <label for="4" title="4" class="mr-4">4</label>
+                <input type="radio" id="5" name="rating" value="5"/>
+                <label for="5" title="5" class="mr-4">5</label>
+            </fieldset>
+        </div>
+            <div class="flex-grow flex flex-col mb-4">
+                <label for="description" class="block mb-2 text-sm font-bold text-gray-700">Commentaire</label>
+                <textarea id="description" name="body"
+                    class="border border-black resize-none w-full flex-grow px-4 py-2 rounded-md focus:outline-none focus:border-blue-500"></textarea>
+            </div>
+            <div class="flex justify-end mt-auto">
+                <button type="submit" class="px-6 py-3 bg-blue-500 text-white font-bold rounded-md hover:bg-blue-600">
+                    Envoyer
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock content %}

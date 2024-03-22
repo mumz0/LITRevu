@@ -19,8 +19,11 @@ from django.urls import path
 from django.contrib.auth.views import LoginView
 
 import authentication.views
-import literary_magazine.views
+import posts.views
+import subscription.views
 
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -30,5 +33,14 @@ urlpatterns = [
         name='auth'),
     path('signup/', authentication.views.signup, name='signup'),
     path('logout/', authentication.views.logout_user, name='logout'),
-    path('home/', literary_magazine.views.home, name='home'),
+    path('flows/', posts.views.flows, name='flows'),
+    path('posts/', posts.views.posts, name='posts'),
+    path('create_ticket/', posts.views.create_ticket, name='create_ticket'),
+    path('create_review/', posts.views.create_review, name='create_review'),
+    path('create_ticket_review/', posts.views.create_ticket_review, name='create_ticket_review'),
+    path('modify_ticket/', posts.views.modify_ticket, name='modify_ticket'),
+    path('modify_review/', posts.views.modify_review, name='modify_review'),
+    path('follows/', subscription.views.follows, name='follows'),
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
