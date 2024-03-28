@@ -1,4 +1,49 @@
 {% extends 'base.html' %}
+
 {% block content %}
-    <p>FOLLOWS</p>
-{% endblock content %}
+<div class="flex flex-col">
+    <h2 class="flex justify-center">Suivre d'autres utilisateurs</h2>
+    <div class="flex flex-row justify-center">
+        <form action="{% url 'add_follower' %}" method="GET">
+            {% csrf_token %}
+            <input type="text" name="query" id="search-bar" placeholder="Nom d'utilisateur..." label="Recherche"
+                class=" border border-black w-1/2 px-4 py-2 rounded-md focus:outline-none focus:border-blue-500" />
+
+            <button type="submit" class="px-6 py-3 bg-blue-500 text-white font-bold rounded-md hover:bg-blue-600">
+                Envoyer
+            </button>
+        </form>
+    </div>
+    <h2 class="flex justify-center">Following</h2>
+    <ul>
+        {% for user in following %}
+        <li>
+            <div class="flex flex-row items-center ml-16 mr-16 mt-4 mb-4 gap-2 ">
+                <div class="flex-grow border border-black p-2">
+                    <p class="text-start">{{ user.username }}</p>
+                </div>
+                <form action="{% url 'remove_follower' user.id %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="px-6 py-3 bg-blue-500 text-white font-bold rounded-md hover:bg-blue-600">Se désabonner</button>
+                </form>
+            </div>
+        </li>
+        {% empty %}
+        <p>Vous n'êtes abonné à aucun compte.</p>
+        {% endfor %}
+    </ul>
+
+    <h2 class="flex justify-center">Followers</h2>
+    <ul>
+        {% for user in followers %}
+        <div class="flex flex-row items-center ml-16 mr-16 mt-4 mb-4 gap-2 ">
+            <div class="flex-grow border border-black p-2">
+                <p class="text-start">{{ user.username }}</p>
+            </div>
+        </div>
+        {% empty %}
+        <p>Vous n'avez aucun abonné.</p>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

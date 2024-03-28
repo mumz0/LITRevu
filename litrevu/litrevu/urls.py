@@ -40,7 +40,9 @@ urlpatterns = [
     path('create_ticket_review/', posts.views.create_ticket_review, name='create_ticket_review'),
     path('modify_ticket/', posts.views.modify_ticket, name='modify_ticket'),
     path('modify_review/', posts.views.modify_review, name='modify_review'),
-    path('follows/', subscription.views.follows, name='follows'),
+    path('follows/', subscription.views.follows_list, name='follows'),
+    path('add_follower/', subscription.views.add_follower, name='add_follower'),
+    path('remove_follower/<int:user_id>/', subscription.views.remove_follower, name='remove_follower'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
