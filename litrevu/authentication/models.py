@@ -5,7 +5,6 @@ from django.conf import settings
 
 
 class User(AbstractUser):
-    
     username = models.CharField(max_length=30, unique=True)
     date_joined = models.DateTimeField(default=timezone.now)
 

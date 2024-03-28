@@ -42,6 +42,7 @@ def create_ticket(request):
     if request.method == 'POST':
         form = TicketForm(request.POST, request.FILES)
         if form.is_valid():
+            # print("form", form)
             ticket = form.save(commit=False)
             ticket.user = request.user
             ticket.save()
