@@ -37,12 +37,16 @@ urlpatterns = [
     path('posts/', posts.views.posts, name='posts'),
     path('create_ticket/', posts.views.create_ticket, name='create_ticket'),
     path('create_review/', posts.views.create_review, name='create_review'),
-    path('create_ticket_review/', posts.views.create_ticket_review, name='create_ticket_review'),
-    path('modify_ticket/', posts.views.modify_ticket, name='modify_ticket'),
-    path('modify_review/', posts.views.modify_review, name='modify_review'),
+    path('create_review/<int:ticket_id>/', posts.views.create_review, name='create_review'),
+    path('modify_response_review/<int:review_id>/', posts.views.modify_response_review, name='modify_response_review'),
+    path('create_response_review/<int:ticket_id>/', posts.views.create_response_review, name='create_response_review'),
+    path('modify_ticket/<int:ticket_id>/', posts.views.modify_ticket, name='modify_ticket'),
+    path('modify_review/<int:review_id>/', posts.views.modify_review, name='modify_review'),
     path('follows/', subscription.views.follows_list, name='follows'),
     path('add_follower/', subscription.views.add_follower, name='add_follower'),
     path('remove_follower/<int:user_id>/', subscription.views.remove_follower, name='remove_follower'),
+    path('remove_ticket_and_reviews/<int:ticket_id>/', posts.views.remove_ticket_and_reviews, name='remove_ticket_and_reviews'),
+    path('remove_review/<int:review_id>/', posts.views.remove_review, name='remove_review'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

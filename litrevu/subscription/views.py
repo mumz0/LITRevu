@@ -39,8 +39,6 @@ def add_follower(request):
         print(search_form, search_form)
         if search_form.is_valid():
             search_query = search_form.cleaned_data['query']
-            # current_user = User.objects.get(username=request.user)
-            # followed_user = User.objects.get(username=search_query)
             user_follow = UserFollows(user=request.user, followed_user=User.objects.get(username=search_query))
             user_follow.save()
     return redirect('follows')

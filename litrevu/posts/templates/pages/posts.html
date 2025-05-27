@@ -1,4 +1,17 @@
 {% extends 'base.html' %}
+
 {% block content %}
-    <p>POSTS</p>
+
+<div class="flex flex-col items-center mt-4">
+    {% for item in combined_list %}
+        <div class="w-full max-w-md bg-white border border-black rounded-lg overflow-hidden mb-4">
+            {% if not item.ticket %}
+                {% include 'posts/ticket.html' %}
+            {% else %}
+                {% include 'posts/review.html' %}
+            {% endif %}
+        </div>
+    {% endfor %}
+</div>
+
 {% endblock content %}
