@@ -1,9 +1,22 @@
 {% block content %}
 <div class="p-4">
-    <p>{{ item.user }}</p>
-    <p>{{ item.time_created }}</p>
-    <h2 class="text-xl font-bold mb-2">Review for Ticket: {{ item.headline }}</h2>
-    <p class="text-gray-700">Rating: {{ item.rating }}</p>
+    <div class="flex flex-row justify-between mb-6">
+        <p>{% if request.user == item.user%}Vous avez publié une critique{%else%}{{ item.user }} à posté une revu{%endif%}</p>
+        <p>{{ item.time_created }}</p>
+    </div>
+    <div class="flex flex-row items-center">
+        <h2 class="text-xl font-bold mb-2 h-full">{{ item.headline }} - </h2>
+        <p class="text-gray-700">
+            {% for _ in ''|center:5 %}
+                {% if forloop.counter <= item.rating %}
+                    <i class="fas fa-star"></i>
+                {% else %}
+                    <i class="far fa-star"></i>
+                {% endif %}
+            {% endfor %}
+        </p>
+    </div>
+
     <p class="text-gray-700">{{ item.body }}</p>
     {% include 'posts/ticket.html' %}
 </div>

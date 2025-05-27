@@ -1,20 +1,64 @@
 {% block content %}
 <div class="p-4">
     {% if item.ticket %}
-        <p>{{ item.ticket.user }}</p>
-        <p>{{ item.time_created }}</p>
-        <h2 class="text-xl font-bold mb-2">Ticket: {{ item.ticket.title }}</h2>
-        <p class="text-gray-700">{{ item.ticket.description }}</p>
-        {% if item.ticket.image %}
-            <img src="{{ item.ticket.image.url }}" alt="Image du ticket" class="w-full h-auto">
-        {% endif %}
+    <div class="border border-black ">
+        <div class="flex flex-row justify-between ">
+            <p>{% if request.user == item.user%}Ticket: Vous{%else%}Ticket - {{ item.user }}{%endif%}</p> 
+        </div>
+        <div class="flex flex-col mb-6">
+            <h2 class="text-xl font-bold mb-2">Ticket: {{ item.ticket.title }}</h2>
+            <p class="text-gray-700">{{ item.ticket.description }}</p>
+            {% if item.ticket.image %}
+                <img src="{{ item.ticket.image.url }}" alt="Image du ticket" class="w-full h-auto" />
+            {% endif %}
+        </div>
+    </div>
     {% else %}
-        <p>{{ item.user }}</p>
+    <div class="flex flex-row justify-between">
+        <p>{% if request.user == item.user%}Vous avez publié un ticket{%else%}{{ item.user }} a demandé une critique{%endif%} </p>
         <p>{{ item.time_created }}</p>
+    </div>
         <h2 class="text-xl font-bold mb-2">Ticket: {{ item.title }}</h2>
         <p class="text-gray-700">{{ item.description }}</p>
         {% if item.image %}
-            <img src="{{ item.image.url }}" alt="Image du ticket" class="w-full h-auto">
+            <img src="{{ item.image.url }}" alt="Image du ticket" class="w-full h-auto" />
+        {% endif %} 
+    {% endif %}
+
+    {% if is_flows_page %}
+        {% if not item.already_responded and not item.ticket.already_responded %}
+            {% if item.ticket %}
+            <div class="mt-6">
+                <a href="{% url 'create_response_review' item.ticket.id%}" class="reset-button-size bg-blue-500 text-white px-4 py-2 rounded-md ml-2"
+                aria-label="Creer une critique">creer une critique</a>
+            </div>
+            {% else %}
+            <div class="mt-6">
+                <a href="{% url 'create_response_review' item.id%}" class="reset-button-size bg-blue-500 text-white px-4 py-2 rounded-md ml-2"
+                aria-label="Creer une critique">creer une critique</a>
+            </div>
+            {% endif %}
+        {% endif %}
+    {% else %}
+
+        {% if item.ticket %}
+            <div class="flex justify-end mt-6">
+                <a href="{% url 'modify_response_review' item.id%}" class="mr-4 reset-button-size bg-blue-500 text-white px-6 py-3 rounded-md ml-2"
+                aria-label="Creer une critique">Modifier</a>
+                <form action="{% url 'remove_review' item.id %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="px-6 py-3 bg-blue-500 text-white font-bold rounded-md hover:bg-blue-600">Supprimer</button>
+                </form>
+            </div>
+        {% else %}
+            <div class="flex justify-end mt-6">
+                <a href="{% url 'modify_ticket' item.id %}" class="mr-4 reset-button-size bg-blue-500 text-white px-6 py-3 rounded-md ml-2"
+                aria-label="Creer une critique">Modifier</a>
+                <form action="{% url 'remove_ticket_and_reviews' item.id %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="px-6 py-3 bg-blue-500 text-white font-bold rounded-md hover:bg-red-600">Supprimer</button>
+                </form>
+            </div>
         {% endif %}
     {% endif %}
 </div>
