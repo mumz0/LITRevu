@@ -1,19 +1,19 @@
 {% extends "authentication/base.html" %}
 {% block content %}
 
-<section class="w-1/2 p-8">
-    <h2 class="text-center mt-12 mb-12 text-xl">Inscrivez-vous maintenant</h2>
+<section class="w-1/2 p-8" role="region" aria-labelledby="signup-heading">
+    <h2 id="signup-heading" class="text-center mt-12 mb-12 text-xl">Inscrivez-vous maintenant</h2>
     <div class="text-center">
-        <a href="{% url 'signup' %}" class="inline-block bg-blue-500 text-white px-4 py-2 rounded-md ">S'inscrire</a>
+        <a href="{% url 'signup' %}" class="inline-block bg-blue-500 text-white px-4 py-2 rounded-md">S'inscrire</a>
     </div>
 </section>
 
-<section class="w-1/2 p-8 ">
-    <h2 class="text-center mt-12 mb-12 text-xl">Connectez-vous</h2>
-    <form method="post" class="flex flex-col items-center mb-12">
+<section class="w-1/2 p-8" role="region" aria-labelledby="login-heading">
+    <h2 id="login-heading" class="text-center mt-12 mb-12 text-xl">Connectez-vous</h2>
+    <form method="post" class="flex flex-col items-center mb-12" role="form" aria-labelledby="login-heading">
         <div class="mb-8 w-full">
             <label for="username" class="block text-sm font-medium text-gray-700">Nom d'utilisateur</label>
-            <input type="text" id="username" name="username" class="border border-black rounded-md px-6 py-2 w-full" aria-label="Saisir votre nom d'utilisateur">
+            <input type="text" id="username" name="username" class="border border-black rounded-md px-6 py-2 w-full" aria-label="Saisir votre nom d'utilisateur" required>
         </div>
         <div class="mb-8 w-full">
             <label for="password" class="block text-sm font-medium text-gray-700">Mot de passe</label>

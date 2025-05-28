@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
     {% load static %}
 <head>
     <meta charset="UTF-8" />
@@ -13,29 +13,31 @@
 
 <body class="mx-auto max-w-screen-2xl h-screen flex flex-col">
     <div class="flex-grow flex flex-col border border-black m-8">
-        <header class="border-b border-black flex justify-between items-center h-16 px-4">
+        <header class="border-b border-black flex justify-between items-center h-16 px-4" role="banner">
             <div class="flex-1"></div>
             <div class="flex justify-center items-center">
                 <h1 class="text-xl font-semibold">LITReview</h1>
             </div>
-            <ul class="flex-1 flex justify-end space-x-4">
-                <li>
-                    <a href="{% url 'flows' %}">Flux</a>
-                </li>
-                <li>
-                    <a href="{% url 'posts' %}">Posts</a>
-                </li>
-                <li>
-                    <a href="{% url 'follows' %}">Abonnements</a>
-                </li>
-                <li>
-                    <a href="{% url 'logout' %}">Se déconnecter</a>
-                </li>
-            </ul>
+            <nav class="flex-1 flex justify-end space-x-4" role="navigation" aria-label="Navigation principale">
+                <ul class="flex space-x-4">
+                    <li>
+                        <a href="{% url 'flows' %}" aria-current="{% if request.resolver_match.url_name == 'flows' %}page{% endif %}">Flux</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'posts' %}" aria-current="{% if request.resolver_match.url_name == 'posts' %}page{% endif %}">Posts</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'follows' %}" aria-current="{% if request.resolver_match.url_name == 'follows' %}page{% endif %}">Abonnements</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'logout' %}">Se déconnecter</a>
+                    </li>
+                </ul>
+            </nav>
         </header>
-        <main class="container flex-grow flex flex-col">
+        <main class="container flex-grow flex flex-col" role="main" aria-label="Contenu principal">
             {% block content %} {% endblock content %}
         </main>
+    </div>
 </body>
-
 </html>

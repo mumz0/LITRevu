@@ -53,7 +53,6 @@ def posts(request):
         chain(all_reviews, user_tickets), key=lambda x: x.time_created, reverse=True
     )
     context = {"combined_list": combined_list}
-    print(combined_list)
     return render(request, "pages/posts.html", context)
 
 
