@@ -42,14 +42,16 @@
     {% else %}
 
         {% if item.ticket %}
+            {% if request.user == item.user %}
             <div class="flex justify-end mt-6">
                 <a href="{% url 'modify_response_review' item.id%}" class="mr-4 reset-button-size bg-blue-500 text-white px-6 py-3 rounded-md ml-2"
-                aria-label="Creer une critique">Modifier</a>
+                aria-label="Modifier la critique">Modifier</a>
                 <form action="{% url 'remove_review' item.id %}" method="post">
                     {% csrf_token %}
                     <button type="submit" class="px-6 py-3 bg-blue-500 text-white font-bold rounded-md hover:bg-blue-600">Supprimer</button>
                 </form>
             </div>
+            {% endif %}
         {% else %}
             <div class="flex justify-end mt-6">
                 <a href="{% url 'modify_ticket' item.id %}" class="mr-4 reset-button-size bg-blue-500 text-white px-6 py-3 rounded-md ml-2"
